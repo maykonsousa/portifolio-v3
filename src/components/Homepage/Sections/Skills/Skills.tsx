@@ -3,7 +3,7 @@
 import React from 'react';
 import { SkillsSection } from '../../HomePage.styles';
 import { ScrollArrow } from '../../ScrollArrow';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Box, useTheme, Theme } from '@mui/material';
 import styled from '@emotion/styled';
 
 const SkillsGrid = styled(Box)`
@@ -14,8 +14,13 @@ const SkillsGrid = styled(Box)`
   margin-top: 2rem;
 `;
 
-const SkillCard = styled(Box)`
-  background-color: white;
+interface ThemedProps {
+  theme: Theme;
+}
+
+const SkillCard = styled(Box)<ThemedProps>`
+  background-color: ${(props) => props.theme.palette.background.paper};
+  color: ${(props) => props.theme.palette.text.primary};
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -28,6 +33,7 @@ const SkillCard = styled(Box)`
 `;
 
 export const Skills = () => {
+  const theme = useTheme();
   const skills = [
     { id: 1, name: 'React' },
     { id: 2, name: 'Node.js' },
@@ -48,7 +54,7 @@ export const Skills = () => {
 
         <SkillsGrid>
           {skills.map((skill) => (
-            <SkillCard key={skill.id}>
+            <SkillCard key={skill.id} theme={theme}>
               <Typography variant="h6">{skill.name}</Typography>
             </SkillCard>
           ))}

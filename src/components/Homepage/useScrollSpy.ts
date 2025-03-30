@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { useAppStore, Section } from '@/providers/AppProvider';
 
 // Array de IDs das seções na ordem em que aparecem na página
-const sectionIds = ['hero', 'about', 'projects', 'skills', 'contact'];
+const sectionIds = ['hero', 'about', 'skills', 'projects', 'contact'];
 
 // Mapeamento dos IDs das seções para o tipo Section do AppStore
 const sectionMapping: Record<string, Section> = {
   hero: 'home',
   about: 'about',
-  projects: 'projects',
   skills: 'experience',
+  projects: 'projects',
   contact: 'contact',
 };
 

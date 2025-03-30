@@ -10,7 +10,7 @@ export const HomeContainer = styled(Box)`
   align-items: center;
 `;
 
-export const Section = styled(Box)`
+export const Section = styled(Box)(({ theme }) => `
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -20,24 +20,26 @@ export const Section = styled(Box)`
   padding: 2rem;
   padding-top: 80px;
   scroll-margin-top: 64px;
-`;
+  color: ${theme.palette.text.primary};
+  transition: background-color 0.3s ease, color 0.3s ease;
+`);
 
-export const HeroSection = styled(Section)`
-  /* Cores serão controladas pelo tema do sistema */
-`;
+export const HeroSection = styled(Section)(({ theme }) => `
+  background-color: ${theme.palette.background.default};
+`);
 
-export const AboutSection = styled(Section)`
-  background-color: #f5f5f5;
-`;
+export const AboutSection = styled(Section)(({ theme }) => `
+  background-color: ${theme.palette.background.paper};
+`);
 
-export const ProjectsSection = styled(Section)`
-  /* Cores serão controladas pelo tema do sistema */
-`;
+export const ProjectsSection = styled(Section)(({ theme }) => `
+  background-color: ${theme.palette.background.default};
+`);
 
-export const SkillsSection = styled(Section)`
-  background-color: #f5f5f5;
-`;
+export const SkillsSection = styled(Section)(({ theme }) => `
+  background-color: ${theme.palette.background.paper};
+`);
 
-export const ContactSection = styled(Section)`
-  /* Cores serão controladas pelo tema do sistema */
-`;
+export const ContactSection = styled(Section)(({ theme }) => `
+  background-color: ${theme.palette.background.default};
+`);

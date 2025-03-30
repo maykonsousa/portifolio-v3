@@ -3,7 +3,7 @@
 import React from 'react';
 import { ProjectsSection } from '../../HomePage.styles';
 import { ScrollArrow } from '../../ScrollArrow';
-import { Typography, Container, Box } from '@mui/material';
+import { Typography, Container, Box, useTheme, Theme } from '@mui/material';
 import styled from '@emotion/styled';
 
 const ProjectsGrid = styled(Box)`
@@ -13,11 +13,15 @@ const ProjectsGrid = styled(Box)`
   margin-top: 2rem;
 `;
 
-const ProjectCard = styled(Box)`
+interface ThemedProps {
+  theme: Theme;
+}
+
+const ProjectCard = styled(Box)<ThemedProps>`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: ${(props) => props.theme.palette.background.paper};
 `;
 
 const ProjectImage = styled.img`
@@ -36,10 +40,10 @@ const ProjectActions = styled(Box)`
   gap: 0.5rem;
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled.button<ThemedProps>`
   background-color: transparent;
-  border: 1px solid #1976d2;
-  color: #1976d2;
+  border: 1px solid ${(props) => props.theme.palette.primary.main};
+  color: ${(props) => props.theme.palette.primary.main};
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   cursor: pointer;
@@ -47,12 +51,14 @@ const ActionButton = styled.button`
   transition: all 0.2s;
 
   &:hover {
-    background-color: #1976d2;
-    color: white;
+    background-color: ${(props) => props.theme.palette.primary.main};
+    color: ${(props) => props.theme.palette.primary.contrastText};
   }
 `;
 
 export const Projects = () => {
+  const theme = useTheme();
+
   const projects = [
     {
       id: 1,
@@ -83,7 +89,7 @@ export const Projects = () => {
 
         <ProjectsGrid>
           {projects.map((project) => (
-            <ProjectCard key={project.id}>
+            <ProjectCard key={project.id} theme={theme}>
               <ProjectImage src={project.image} alt={project.title} />
               <ProjectContent>
                 <Typography variant="h5" component="div" gutterBottom>
@@ -94,8 +100,8 @@ export const Projects = () => {
                 </Typography>
               </ProjectContent>
               <ProjectActions>
-                <ActionButton>Ver Detalhes</ActionButton>
-                <ActionButton>GitHub</ActionButton>
+                <ActionButton theme={theme}>Ver Detalhes</ActionButton>
+                <ActionButton theme={theme}>GitHub</ActionButton>
               </ProjectActions>
             </ProjectCard>
           ))}
