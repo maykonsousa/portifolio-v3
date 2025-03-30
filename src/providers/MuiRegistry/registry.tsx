@@ -7,41 +7,7 @@ import createCache from '@emotion/cache';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useAppStore } from '../AppProvider';
-import { createTheme } from '@mui/material/styles';
-
-// Tema claro
-const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#0070f3',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    background: {
-      default: '#f5f5f5',
-      paper: '#ffffff',
-    },
-  },
-});
-
-// Tema escuro
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9',
-    },
-    secondary: {
-      main: '#4db6ac',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1e1e1e',
-    },
-  },
-});
+import { darkTheme, lightTheme } from '@themes';
 
 export default function MuiRegistry({
   children,

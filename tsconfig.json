@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@components": ["./src/components"],
       "@components/*": ["./src/components/*"],
-      "@theme/*": ["./src/theme/*"],
+      "@themes": ["./src/themes"],
+      "@themes/*": ["./src/themes/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
       "@providers/*": ["./src/providers/*"]
