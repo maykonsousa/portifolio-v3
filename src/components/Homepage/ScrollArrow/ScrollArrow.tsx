@@ -14,6 +14,8 @@ const ArrowContainer = styled(Box)`
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  position: relative;
+  z-index: 2;
   animation: bounce 2s infinite;
 
   @keyframes bounce {
@@ -43,7 +45,16 @@ export const ScrollArrow = ({ targetId }: ScrollArrowProps) => {
 
   return (
     <ArrowContainer>
-      <IconButton onClick={handleClick} size="large" color="primary">
+      <IconButton
+        onClick={handleClick}
+        size="large"
+        sx={{
+          'color': 'white',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          },
+        }}
+      >
         <KeyboardArrowDown fontSize="large" />
       </IconButton>
     </ArrowContainer>

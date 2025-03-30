@@ -8,9 +8,17 @@ export const PageContainer = styled(Box)(({ theme }) => ({
   padding: 0,
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
-export const MainContent = styled(Box)(() => ({
+export const MainContent = styled(Box)(({ theme }) => ({
   width: '100%',
+  maxWidth: '1440px',
+  margin: '0 auto',
   flexGrow: 1,
+  padding: theme.spacing(0, 2),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(0, 3),
+  },
 }));
