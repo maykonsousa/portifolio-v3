@@ -16,23 +16,30 @@ const sectionIdMap: Record<Section, string> = {
 interface AppState {
   theme: Theme;
   section: Section;
+  isScrolling: boolean; // Flag para indicar se está rolando programaticamente
 
   toggleTheme: () => void;
   navigation: (section: Section) => void;
   isActiveSection: (section: Section) => boolean;
+  setIsScrolling: (value: boolean) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
   theme: 'light',
   section: 'home',
+  isScrolling: false,
+  
   // Implementação das ações
   toggleTheme: () =>
     set((state) => ({
       theme: state.theme === 'light' ? 'dark' : 'light',
     })),
+    
+  setIsScrolling: (value: boolean) => set(() => ({ isScrolling: value })),
+  
   navigation: (section: Section) => {
     // Primeiro atualiza o estado
-    set(() => ({ section }));
+    set(() => ({ section, isScrolling: true }));
 
     // Depois realiza a navegação com smooth scroll
     const sectionId = sectionIdMap[section];
@@ -49,8 +56,15 @@ export const useAppStore = create<AppState>((set, get) => ({
           top: offsetPosition,
           behavior: 'smooth'
         });
+        
+        // Definir um timeout para desabilitar a flag de rolagem programática
+        // após a animação terminar (1 segundo é uma estimativa razoável)
+        setTimeout(() => {
+          set(() => ({ isScrolling: false }));
+        }, 1000);
       }, 100);
     }
   },
+  
   isActiveSection: (section: Section) => get().section === section,
 }));

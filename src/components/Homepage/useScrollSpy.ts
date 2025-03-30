@@ -16,11 +16,14 @@ const sectionMapping: Record<string, Section> = {
 };
 
 export const useScrollSpy = () => {
-  const { navigation } = useAppStore();
+  const { navigation, isScrolling } = useAppStore();
   const [activeSection, setActiveSection] = useState<Section>('home');
 
   useEffect(() => {
     const handleScroll = () => {
+      // Se estiver rolando programaticamente, não detecta seções
+      if (isScrolling) return;
+      
       // Usar uma posição mais próxima do topo da janela para melhorar a detecção
       const scrollPosition = window.scrollY + 100; // Ajustado para um offset menor
       
@@ -57,15 +60,15 @@ export const useScrollSpy = () => {
     };
 
     // Adicionar evento de scroll com throttling para melhorar performance
-    let isScrolling = false;
+    let isScrollingThrottled = false;
     
     const scrollListener = () => {
-      if (!isScrolling) {
+      if (!isScrollingThrottled) {
         window.requestAnimationFrame(() => {
           handleScroll();
-          isScrolling = false;
+          isScrollingThrottled = false;
         });
-        isScrolling = true;
+        isScrollingThrottled = true;
       }
     };
     
@@ -78,5 +81,5 @@ export const useScrollSpy = () => {
     return () => {
       window.removeEventListener('scroll', scrollListener);
     };
-  }, [navigation, activeSection]);
+  }, [navigation, activeSection, isScrolling]);
 }; 
