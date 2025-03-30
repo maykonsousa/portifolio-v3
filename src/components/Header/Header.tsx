@@ -50,7 +50,6 @@ export function Header() {
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Adb sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -67,7 +66,7 @@ export function Header() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            MAYKON SOUSA
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -126,7 +125,7 @@ export function Header() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            MAYKON SOUSA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(([key, label]) => (
